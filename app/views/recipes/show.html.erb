@@ -1,6 +1,6 @@
 <p>
-  <strong>Recipe:</strong>
-  <%= @recipe.name %>
+   <strong>Recipe:</strong>
+   <%= @recipe.name %>
 </p>
 
   <strong>prep_time:</strong>
@@ -9,7 +9,7 @@
   <%= @recipe.cook_time %>
 
   <h2>Ingredients</h2>
-<% @recipe.ingredients.each do |ingredient| %>
+  <% @recipe.ingredients.each do |ingredient| %>
   <p>
     <strong>Measurement:</strong>
     <%= ingredient.measurements %>
@@ -19,11 +19,21 @@
     <strong>Ingredient:</strong>
     <%= ingredient.item %>
   </p>
+
+<% end %>
+
+<h2>Directions</h2>
+   <% @recipe.steps.each do |step| %>
+  <p>
+    <strong>Directions:</strong>
+    <%= step.description %>
+  </p>
+
 <% end %>
 
 <h2>Add Ingredients:</h2>
-<%= form_for([@recipe, @recipe.ingredients.build]) do |f| %>
-  <p>
+   <%= form_for([@recipe, @recipe.ingredients.build]) do |f| %>
+   <p>
     <%= f.label :measurements %><br>
     <%= f.text_field :measurements %>
   </p>
@@ -34,6 +44,19 @@
   <p>
     <%= f.submit %>
   </p>
+
+<% end %>
+
+<h2>Add Directions:</h2>
+   <%= form_for([@recipe, @recipe.steps.build]) do |f| %>
+   <p>
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+
 <% end %>
 
 <%= link_to 'Edit', edit_recipe_path(@recipe) %> |

@@ -1,14 +1,11 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <h1>My Recipes</h1>
+<h1>My Recipes</h1>
 
 
-
-
-  </body>
-</html>
+<% @recipes.each do |recipe| %>
+    <%= recipe.name %>
+    <%= recipe.prep_time %>
+    <%= recipe.cook_time %>
+    <%= link_to "Show", recipe_path(recipe) %>
+    <%= link_to "Edit", edit_recipe_path(recipe) %>
+    <%= link_to "Destroy", recipe, method: :delete %>
+<% end %>

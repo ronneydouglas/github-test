@@ -1,0 +1,40 @@
+<p>
+  <strong>Recipe:</strong>
+  <%= @recipe.name %>
+</p>
+
+  <strong>prep_time:</strong>
+  <%= @recipe.prep_time %>
+  <strong>cook_time:</strong>
+  <%= @recipe.cook_time %>
+
+  <h2>Ingredients</h2>
+<% @recipe.ingredients.each do |ingredient| %>
+  <p>
+    <strong>Measurement:</strong>
+    <%= ingredient.measurements %>
+  </p>
+
+  <p>
+    <strong>Ingredient:</strong>
+    <%= ingredient.item %>
+  </p>
+<% end %>
+
+<h2>Add Ingredients:</h2>
+<%= form_for([@recipe, @recipe.ingredients.build]) do |f| %>
+  <p>
+    <%= f.label :measurements %><br>
+    <%= f.text_field :measurements %>
+  </p>
+  <p>
+    <%= f.label :item %><br>
+    <%= f.text_field :item %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+<%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+<%= link_to 'Back', recipes_path %>
